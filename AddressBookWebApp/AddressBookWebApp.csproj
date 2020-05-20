@@ -101,6 +101,12 @@
     <Content Include="Models\AddressBookModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AddressBookModel.Context.cs</LastGenOutput>
+      <DependentUpon>AddressBookModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\AddressBookModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AddressBookModel.edmx</DependentUpon>
+      <LastGenOutput>AddressBookModel.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -109,16 +115,29 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Address.cs">
+      <DependentUpon>AddressBookModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AddressBookModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AddressBookModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AddressBookModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddressBookModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AddressBookModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AddressBookModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddressMetadata.cs" />
+    <Compile Include="Models\Group.cs">
+      <DependentUpon>AddressBookModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -127,9 +146,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AddressBookModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\AddressBookModel.edmx.diagram">
+    <Content Include="Models\AddressBookModel.edmx.diagram">
       <DependentUpon>AddressBookModel.edmx</DependentUpon>
-    </None>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
