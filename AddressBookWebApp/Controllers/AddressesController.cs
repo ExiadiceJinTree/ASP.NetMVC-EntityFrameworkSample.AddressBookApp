@@ -57,10 +57,14 @@ namespace AddressBookWebApp.Controllers
         // 詳細については、https://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Kana,ZipCode,Prefecture,StreetAddress,Telephone,Mail,Group_Id")] Address address)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Kana,ZipCode,PrefectureItem,StreetAddress,Telephone,Mail,Group_Id")] Address address)  // BindパラメータPrefectureをPrefectureItemに変更
+        //public async Task<ActionResult> Create([Bind(Include = "Id,Name,Kana,ZipCode,Prefecture,StreetAddress,Telephone,Mail,Group_Id")] Address address)
         {
             if (ModelState.IsValid)
             {
+                // ビューで選択されたPrefectureItemプロパティ列挙値を文字列化してPrefectureプロパティに設定
+                address.Prefecture = address.PrefectureItem.ToString();
+
                 db.Addresses.Add(address);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -82,6 +86,15 @@ namespace AddressBookWebApp.Controllers
             {
                 return HttpNotFound();
             }
+
+            // モデルのPrefectureプロパティ値文字列をPrefectures列挙値に変換し、DBマッピングされていないモデルのPrefectureItemプロパティに設定しておく。
+            // これにより、ビューのPrefectureItem列挙値プロパティを利用したドロップダウンリストが、現在値が選択された状態になる。
+            Prefectures prefectureEnumItem;
+            if (Enum.TryParse(address.Prefecture, out prefectureEnumItem))
+            {
+                address.PrefectureItem = prefectureEnumItem;
+            }
+
             ViewBag.Group_Id = new SelectList(db.Groups, "Id", "Name", address.Group_Id);
             return View(address);
         }
@@ -91,10 +104,14 @@ namespace AddressBookWebApp.Controllers
         // 詳細については、https://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Kana,ZipCode,Prefecture,StreetAddress,Telephone,Mail,Group_Id")] Address address)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Kana,ZipCode,PrefectureItem,StreetAddress,Telephone,Mail,Group_Id")] Address address)  // BindパラメータPrefectureをPrefectureItemに変更
+        //public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Kana,ZipCode,Prefecture,StreetAddress,Telephone,Mail,Group_Id")] Address address)
         {
             if (ModelState.IsValid)
             {
+                // ビューで選択されたPrefectureItemプロパティ列挙値を文字列化してPrefectureプロパティに設定
+                address.Prefecture = address.PrefectureItem.ToString();
+
                 db.Entry(address).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

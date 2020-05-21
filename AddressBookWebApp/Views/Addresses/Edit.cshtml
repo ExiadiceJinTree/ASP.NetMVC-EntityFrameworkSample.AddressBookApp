@@ -43,10 +43,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Prefecture, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PrefectureItem, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Prefecture, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Prefecture, "", new { @class = "text-danger" })
+                @* 都道府県の入力をテキスト入力でなく、enumデータからのドロップダウンリストとする *@
+                @*@Html.EditorFor(model => model.Prefecture, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.EnumDropDownListFor(model => model.PrefectureItem, optionLabel: "都道府県を選択", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PrefectureItem, "", new { @class = "text-danger" })
             </div>
         </div>
 
