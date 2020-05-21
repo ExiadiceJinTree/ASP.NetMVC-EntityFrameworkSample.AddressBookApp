@@ -10,10 +10,20 @@
         * ASP.NET MVCで生成されるHTMLはbootstrapを使用することを想定した作りになっているため、特別なことをしなくてもモダンなレイアウトに整形される。
     *@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    
+    @* Webサイト全体に適用する独自CSSを適用 *@
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
     <div>
         @RenderBody()
     </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @* Webサイト全体に適用する独自JavaScriptをロード *@
+    <script src="~/Scripts/app.js"></script>
 </body>
 </html>
