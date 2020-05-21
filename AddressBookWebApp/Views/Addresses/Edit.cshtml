@@ -78,7 +78,7 @@
             @Html.LabelFor(model => model.Group_Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @* ドロップダウンリストの空の項目=先頭項目のテキストを"グループを選択"に設定 *@
-                @Html.DropDownList("Group_Id", null, optionLabel: "グループを選択", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Group_Id, null, optionLabel: "グループを選択", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Group_Id, "", new { @class = "text-danger" })
             </div>
         </div>
