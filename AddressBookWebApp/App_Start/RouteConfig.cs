@@ -16,7 +16,8 @@ namespace AddressBookWebApp
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Addresses", action = "Index", id = UrlParameter.Optional }
+                //defaults: new { controller = "Addresses", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Addresses", action = "Search", id = UrlParameter.Optional }
             );
         }
     }

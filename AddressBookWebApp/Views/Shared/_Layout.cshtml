@@ -30,12 +30,14 @@
                         <span class="icon-bar"></span>
                     </button>
                     @*タイトル*@
-                    @Html.ActionLink("Address Book", actionName: "Index", routeValues: new { controller = "Addresses" }, htmlAttributes: new { @class = "navbar-brand" })
+                    @*@Html.ActionLink("Address Book", actionName: "Index", routeValues: new { controller = "Addresses" }, htmlAttributes: new { @class = "navbar-brand" })*@
+                    @Html.ActionLink("Address Book", actionName: "Search", routeValues: new { controller = "Addresses" }, htmlAttributes: new { @class = "navbar-brand" })
                 </div>
                 @* ナビバーメニューリスト *@
                 <div class="collapse navbar-collapse" id="collapsedNaviList">
                     @* 左寄せメニューリスト *@
                     <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("アドレス管理", actionName: "Index", routeValues: new { controller = "Addresses" })</li>
                         <li>@Html.ActionLink("グループ管理", actionName: "Index", routeValues: new { controller = "Groups" })</li>
                     </ul>
                     @* 右寄せメニューリスト *@
