@@ -91,9 +91,11 @@ namespace AddressBookWebApp.Models
 
         [DisplayName("カナ")]
         [Required]
+        [RegularExpression(pattern: @"[゠-ヿ 　]+")]  // 正規表現:全角片仮名/半角空白/全角空白 1文字以上 *片仮名の正規表現はUnicode一覧での片仮名の範囲より
         public string Kana { get; set; }
 
         [DisplayName("郵便番号")]
+        [RegularExpression(pattern: @"\d{7}")]  // 正規表現:半角数字7文字
         public string ZipCode { get; set; }
 
         [DisplayName("都道府県")]
@@ -103,9 +105,12 @@ namespace AddressBookWebApp.Models
         public string StreetAddress { get; set; }
 
         [DisplayName("電話番号")]
+        [RegularExpression(pattern: @"\d+")]  // 正規表現:半角数字1文字以上
+        [StringLength(maximumLength: 11, MinimumLength = 11)]  // 文字列の最大&最小長11文字
         public string Telephone { get; set; }
 
         [DisplayName("メールアドレス")]
+        [DataType(DataType.EmailAddress)]  // メールアドレスの場合はDataType属性で用意されている
         public string Mail { get; set; }
 
         [DisplayName("グループ")]
