@@ -146,6 +146,25 @@ namespace AddressBookWebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Addresses/Search
+        public async Task<ActionResult> Search([Bind(Include = "Kana")] SearchViewModel searchViewModel)
+        {
+            if (!string.IsNullOrEmpty(searchViewModel.Kana))
+            {
+                // 検索ワード(カナ)がAddressesテーブルデータのカナフィールドに含まれているデータ一覧を取得
+                var searchedAddresses = db.Addresses.Where(address => address.Kana.Contains(searchViewModel.Kana));
+                //検索結果をSearchViewModelの検索結果リストにセット
+                searchViewModel.Addresses = await searchedAddresses.ToListAsync();
+            }
+            else
+            {
+                // 検索ワードが未指定の場合は、全件を結果とする
+                searchViewModel.Addresses = await db.Addresses.ToListAsync();
+            }
+
+            return View(searchViewModel);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
