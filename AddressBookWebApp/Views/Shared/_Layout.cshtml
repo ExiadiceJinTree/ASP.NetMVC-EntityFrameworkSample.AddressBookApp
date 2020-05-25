@@ -5,49 +5,53 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 
-    @*
-        bootstrapを適用
-        * ASP.NET MVCで生成されるHTMLはbootstrapを使用することを想定した作りになっているため、特別なことをしなくてもモダンなレイアウトに整形される。
-    *@
+    @********** スタイル **********@
+    @* bootstrapを適用
+        * ASP.NET MVCで生成されるHTMLはbootstrapを使用することを想定した作りになっているため、特別なことをしなくてもモダンなレイアウトに整形される。 *@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    
+
     @* Webサイト全体に適用する独自CSSを適用 *@
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
-    @* トップナビバー *@
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                @* 狭い画面サイズ時のハンバーガーメニューを設定 *@
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsedNaviList">
-                    @* 音声ブラウザにメニューがあることを伝えています *@
-                    <span class="sr-only">Toggle navigation</span>
-                    @* ハンバーガーボタンの3本線を表現 *@
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @*タイトル*@
-                @Html.ActionLink("Address Book", actionName: "Index", routeValues: new { controller = "Addresses" }, htmlAttributes: new { @class = "navbar-brand" })
+    @********** ヘッダー **********@
+    <header>
+        @* トップナビバー *@
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    @* 狭い画面サイズ時のハンバーガーメニューを設定 *@
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsedNaviList">
+                        @* 音声ブラウザにメニューがあることを伝えています *@
+                        <span class="sr-only">Toggle navigation</span>
+                        @* ハンバーガーボタンの3本線を表現 *@
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @*タイトル*@
+                    @Html.ActionLink("Address Book", actionName: "Index", routeValues: new { controller = "Addresses" }, htmlAttributes: new { @class = "navbar-brand" })
+                </div>
+                @* ナビバーメニューリスト *@
+                <div class="collapse navbar-collapse" id="collapsedNaviList">
+                    @* 左寄せメニューリスト *@
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("グループ管理", actionName: "Index", routeValues: new { controller = "Groups" })</li>
+                    </ul>
+                    @* 右寄せメニューリスト *@
+                    <ul class="nav navbar-nav navbar-right">
+                    </ul>
+                </div>
             </div>
-            @* ナビバーメニューリスト *@
-            <div class="collapse navbar-collapse" id="collapsedNaviList">
-                @* 左寄せメニューリスト *@
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("グループ管理", actionName: "Index", routeValues: new { controller = "Groups" })</li>
-                </ul>
-                @* 右寄せメニューリスト *@
-                <ul class="nav navbar-nav navbar-right">
-                </ul>
-            </div>
-        </div>
-    </nav>
-    @* コンテンツエリア *@
+        </nav>
+    </header>
+
+    @********** コンテンツエリア **********@
     <div class="container">
         @RenderBody()
     </div>
 
+    @********** スクリプト **********@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
